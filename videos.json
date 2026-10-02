@@ -1,0 +1,19 @@
+[
+  {
+    "output": "assets/hero-mobile-fullhd.mp4",
+    "parts": [
+      "video-parts/hero-mobile-fullhd.mp4/00.part",
+      "video-parts/hero-mobile-fullhd.mp4/01.part"
+    ],
+    "sha256": "99364c7cb33cc19e3214519ea187bcf928319cd66da4f0ce7fe52f3ea849b849"
+  },
+  {
+    "output": "assets/hero-original-4k.mp4",
+    "parts": [
+      "video-parts/hero-original-4k.mp4/00.part",
+      "video-parts/hero-original-4k.mp4/01.part",
+      "video-parts/hero-original-4k.mp4/02.part"
+    ],
+    "sha256": "d78994418ca2955bb618e19d8704bcf6f9ba760ca7bdb506d8638f0180b279d5"
+  }
+]
