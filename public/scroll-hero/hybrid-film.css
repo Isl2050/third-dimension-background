@@ -1,4 +1,5 @@
-.hero-journey{height:900svh}
+.hero-journey{height:550svh}
+.film-grain{display:none}
 .hero-sticky{position:sticky;top:0;height:100svh}
 .film-toggle:disabled{opacity:.72;cursor:default}
 .quick-whatsapp{background:#25d366;border-color:#ffffff75}

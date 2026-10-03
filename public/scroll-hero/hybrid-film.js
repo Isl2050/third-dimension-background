@@ -13,6 +13,7 @@ video.pause();
 const titles=['فوق السحب','القصر من الأعلى','واجهة القصر','الصالة الكبرى','المجلس الملكي','غرفة الضيوف','الحديقة وحمام السباحة','الواجهة الخلفية','THIRD DIMENSION CONSULTANCY','من النهار إلى الليل'];
 const times=[0,2,6,9,11.5,16,21,24,28,32];
 let mode='scroll',target=0,userPaused=reduce.matches,lastScene=-1,scheduled=false;
+let seekTimer=0,lastSeek=0,lastButton='';
 function scene(){
   let index=0;
   for(let i=1;i<times.length&&video.currentTime>=times[i];i++)index=i;
@@ -24,7 +25,9 @@ function scene(){
 function buttonState(){
   const scrolling=mode==='scroll';
   toggle.disabled=scrolling;
-  toggle.textContent=scrolling?'الفيديو يتحرك مع السكرول':video.paused?'تشغيل الخلفية ▶':'إيقاف الخلفية Ⅱ';
+  const text=scrolling?'الفيديو يتحرك مع السكرول':video.paused?'تشغيل الخلفية ▶':'إيقاف الخلفية Ⅱ';
+  if(text===lastButton)return;
+  lastButton=text;toggle.textContent=text;
   toggle.setAttribute('aria-label',scrolling?'تحكم في الهيرو بالتمرير':video.paused?'تشغيل فيديو الخلفية':'إيقاف فيديو الخلفية');
 }
 function playback(){
@@ -33,10 +36,23 @@ function playback(){
   buttonState();
 }
 function seek(){
+  seekTimer=0;
   if(mode!=='scroll'||reduce.matches||document.hidden||video.readyState<1)return;
-  video.pause();
-  // One decode at a time; completed seeks follow only the latest scroll target.
-  if(!video.seeking&&Math.abs(video.currentTime-target)>1/30)video.currentTime=target;
+  if(video.seeking)return;
+  // Keep the scroll responsive; decode only the latest target at most 20 times/s.
+  const wait=50-(performance.now()-lastSeek);
+  if(wait>0){seekTimer=setTimeout(seek,wait);return;}
+  // Never start a seek into an undownloaded range and leave the decoder waiting.
+  let available=null;
+  for(let i=0;i<video.buffered.length;i++){
+    const start=video.buffered.start(i),end=Math.max(start,video.buffered.end(i)-.08);
+    const candidate=Math.max(start,Math.min(end,target));
+    if(available===null||Math.abs(candidate-target)<Math.abs(available-target))available=candidate;
+  }
+  if(available===null)return;
+  const next=Math.round(available*30)/30;
+  if(Math.abs(video.currentTime-next)<1/30)return;
+  lastSeek=performance.now();video.currentTime=next;
 }
 function update(){
   scheduled=false;
@@ -49,12 +65,14 @@ function update(){
   fill.style.transform=`scaleX(${progress})`;
   header.classList.toggle('is-scrolled',scrollY>28);
   document.body.classList.toggle('is-background-film',next==='background');
-  if(mode!==next){mode=next;playback();}
-  if(mode==='scroll')seek();
+  if(mode!==next){mode=next;clearTimeout(seekTimer);seekTimer=0;playback();}
+  if(mode==='scroll'&&!seekTimer)seek();
   scene();buttonState();
 }
 function schedule(){if(!scheduled){scheduled=true;requestAnimationFrame(update);}}
 video.addEventListener('loadedmetadata',update);
+video.addEventListener('progress',()=>{if(mode==='scroll'&&!seekTimer)seek();});
+video.addEventListener('loadeddata',()=>{if(mode==='scroll'&&!seekTimer)seek();});
 video.addEventListener('seeked',()=>{scene();if(mode==='scroll')seek();else playback();});
 video.addEventListener('timeupdate',scene);
 video.addEventListener('play',buttonState);
