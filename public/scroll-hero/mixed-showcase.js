@@ -44,7 +44,7 @@
   async function load() {
     if (loaded) return; loaded = true;
     try {
-      const response = await fetch('../assets/mixed/manifest.json'); if (!response.ok) throw Error('Gallery unavailable');
+      const response = await fetch('../assets/mixed/manifest.json?v=webp-20261003'); if (!response.ok) throw Error('Gallery unavailable');
       images = (await response.json()).map(item => ({...item,src:'../'+item.src,original:'../'+item.original})); section.querySelector('.mixed-total').textContent = `${images.length} / من أعمالنا`;
       cards = images.map((item,i) => {
         const y = 1 - 2 * (i + .5) / images.length, angle = i * 2.399963, ring = Math.sqrt(1-y*y);
