@@ -1,0 +1,15 @@
+/* The film frame stays still; scrolling controls video time instead of 3D transforms. */
+.hero-journey{height:900svh}
+.hero-sticky{perspective:none}
+.film-frame{transform:none;border:0;box-shadow:none;will-change:auto}
+.film-shade{background:linear-gradient(90deg,transparent 5%,rgba(10,13,14,.18) 42%,rgba(10,13,14,.62)),linear-gradient(0deg,rgba(10,13,14,.4),transparent 28%,transparent 76%,rgba(10,13,14,.18));opacity:clamp(0,calc(1 - var(--progress,0)*7),1)}
+.film-grain{display:none}
+.hero-content{transform:translateY(-42%);opacity:clamp(0,calc(1 - var(--progress,0)*8),1)}
+.hero-meta{opacity:1;background:rgba(18,20,21,.42);padding:8px 10px;backdrop-filter:blur(6px)}
+.scroll-cue{opacity:clamp(0,calc(1 - var(--progress,0)*9),1)}
+.scroll-line{animation:none}
+.journey-caption{left:var(--pad);bottom:90px;gap:14px;opacity:clamp(0,calc((var(--progress,0) - .11)*12),1);transform:none;font-size:clamp(16px,1.7vw,24px);background:rgba(18,20,21,.48);padding:8px 12px;backdrop-filter:blur(6px)}
+.scrub-progress{position:absolute;z-index:3;bottom:0;right:0;left:0;height:3px;background:rgba(255,255,255,.28)}
+.scrub-progress-fill{display:block;width:100%;height:100%;background:var(--gold-light);transform:scaleX(0);transform-origin:right center;will-change:transform}
+@media(max-width:640px){.hero-journey{height:900svh}.hero-content{transform:translateY(-30%)}.film-shade{background:linear-gradient(0deg,rgba(10,13,14,.62),rgba(10,13,14,.3) 55%,rgba(10,13,14,.32))}.journey-caption{left:var(--pad);bottom:76px;font-size:17px}}
+@media(prefers-reduced-motion:reduce){.hero-journey{height:100svh}.hero-sticky{position:relative}.journey-caption,.scrub-progress{display:none}.hero-content{opacity:1!important}}

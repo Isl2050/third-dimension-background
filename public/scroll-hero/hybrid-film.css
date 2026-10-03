@@ -1,0 +1,7 @@
+.hero-journey{height:900svh}
+.hero-sticky{position:sticky;top:0;height:100svh}
+.film-toggle:disabled{opacity:.72;cursor:default}
+.quick-whatsapp{background:#25d366;border-color:#ffffff75}
+.quick-contact .quick-whatsapp img{width:27px;height:27px}
+@media(hover:hover) and (pointer:fine){.quick-contact .quick-whatsapp:hover{background:#1fb65a}}
+@media(prefers-reduced-motion:reduce){.hero-journey{height:100svh}}

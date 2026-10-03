@@ -15,5 +15,17 @@
       "video-parts/hero-original-4k.mp4/02.part"
     ],
     "sha256": "d78994418ca2955bb618e19d8704bcf6f9ba760ca7bdb506d8638f0180b279d5"
+  },
+  {
+    "output": "assets/hero-scroll-4k.mp4",
+    "parts": [
+      "video-parts/hero-scroll-4k.mp4/00.part",
+      "video-parts/hero-scroll-4k.mp4/01.part",
+      "video-parts/hero-scroll-4k.mp4/02.part",
+      "video-parts/hero-scroll-4k.mp4/03.part",
+      "video-parts/hero-scroll-4k.mp4/04.part",
+      "video-parts/hero-scroll-4k.mp4/05.part"
+    ],
+    "sha256": "f1a225eb7717da282ba2c47302b65efe7e558ef2ca1971e656cac7b529b2f4a1"
   }
 ]
