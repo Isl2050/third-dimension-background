@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="refined-layout.css">
   <link rel="stylesheet" href="exterior-showcase.css">
   <link rel="stylesheet" href="mixed-showcase.css">
-  <script defer src="hybrid-film.js?v=20261003-smooth"></script>
+  <script defer src="sequence-film.js?v=20261003-frames"></script>
   <script defer src="mixed-showcase.js"></script>
   <link rel="stylesheet" href="services-motion.css">
   <script defer src="page-motion.js"></script>
@@ -20,7 +20,7 @@
   <script defer src="site-ui.js?v=20261002-2"></script>
   <link rel="stylesheet" href="hero-autoplay.css">
   <link rel="stylesheet" href="background-film.css">
-  <link rel="stylesheet" href="hybrid-film.css?v=20261003-smooth">
+  <link rel="stylesheet" href="hybrid-film.css?v=20261003-frames">
 </head>
 <body id="top">
   <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
@@ -43,8 +43,8 @@
   <main id="main">
     <section class="hero-journey" aria-labelledby="hero-title">
       <div class="hero-sticky">
-        <div class="film-frame" aria-hidden="true">
-          <video class="hero-video" muted playsinline loop preload="auto" poster="../assets/hero-original-start.jpg">
+        <div class="film-frame" aria-hidden="true" data-frames-root="../assets/hero-frames/">
+          <video class="hero-video" muted playsinline loop preload="none" poster="../assets/hero-original-start.jpg">
             <source src="../assets/hero-scroll-smooth-1080.mp4" type="video/mp4">
           </video>
           <div class="film-shade"></div>

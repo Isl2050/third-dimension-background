@@ -1,5 +1,10 @@
 .hero-journey{height:550svh}
 .film-grain{display:none}
+.hero-sequence{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+.hero-sequence.is-ready{opacity:1}
+.hero-sequence.is-video{opacity:0}
+body:not(.is-background-film) .hero-video{visibility:hidden}
+body>.film-frame{background:#101719 url('../assets/hero-original-start.jpg') center/cover no-repeat}
 .hero-sticky{position:sticky;top:0;height:100svh}
 .film-toggle:disabled{opacity:.72;cursor:default}
 .quick-whatsapp{background:#25d366;border-color:#ffffff75}
